@@ -1,27 +1,35 @@
-INSERT INTO bonds (isin, bond_currency, cusip, face_value, issuer_name, bond_maturity_date, status, type)
+INSERT INTO employee (employee_id, employee_name, employee_surname, employee_email, employee_department, employee_role, employee_password_hash)
 VALUES
-    ('XS1988387210', 'USD', NULL, 1000, 'BNPParibasIssu 4,37% Microsoft Corp (USD)', '2021-08-05', 'active', 'CORP'),
-    ('USN0280EAR64', 'USD', '123456780', 900, 'Airbus 3.15% USD', '2021-07-30', 'active', 'CORP'),
-    ('A12356111', 'USD', '123456bh0', 900, 'UBS Facebook (USD)', '2021-09-30', 'active', 'CORP'),
-    ('USU02320AG12', 'USD', NULL, 900, 'Amazon', '2021-08-03', 'active', 'CORP'),
-    ('GB00B6460505', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN'),
-    ('GB00B6460506', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN'),
-    ('GB00B6460507', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN'),
-    ('GB00B6460508', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN'),
-    ('GB00B6460509', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN'),
-    ('GB00B6460510', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN'),
-    ('GB00B6460511', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN'),
-    ('GB00B6460512', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN'),
-    ('GB00B6460513', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN'),
-    ('GB00B6460514', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN'),
-    ('GB00B6460515', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN'),
-    ('US87973RAA86', 'USD', '87973RAA8', 690, 'TEMASEK FINL I LTD GLOBAL MEDIUM TERM NTS BOOK ENTRY REG S', '2021-08-06', 'active', 'SOVN'),
-    ('IE00B29LNP31', 'USD', '87973RAA8', 340, 'First Norway Alpha Kl.IV', '2030-12-22', 'active', 'SOVN'),
-    ('CE00B29LNP67', 'USD', '98973RAA7', 360, 'ABC Airways', '2030-11-12', 'active', 'CORP'),
-    ('M12356111653', 'GBP', '333456bh0', 700, 'UBS Mews', '2021-08-30', 'active', 'CORP');
+       (1000, 'Georgiana', 'Stoica', 'stoicag@db.com', 'operations', 'senior', NULL),
+       (1001, 'Ceyda', 'Akbulut', 'akbulutc@db.com', 'operations', 'junior', NULL),
+       (1002, 'Yilin', 'Liu', 'liuy@db.com', 'operations', 'senior', NULL),
+       (1003, 'Murtaza', 'Wani', 'wanim@db.com', 'operations', 'manager', NULL),
+       (1004, 'Mahreen', 'Chaiwalla', 'chaiwallam@db.com', 'operations', 'senior', NULL);
+
+INSERT INTO bond (isin, bond_currency, cusip, face_value, issuer_name, bond_maturity_date, status, type, employee_id)
+VALUES
+        ('XS1988387210', 'USD', NULL, 1000, 'BNPParibasIssu 4,37% Microsoft Corp (USD)', '2021-08-05', 'active', 'CORP', 1000),
+        ('USN0280EAR64', 'USD', '123456780', 900, 'Airbus 3.15% USD', '2021-07-30', 'active', 'CORP', 1000),
+        ('A12356111', 'USD', '123456bh0', 900, 'UBS Facebook (USD)', '2021-09-30', 'active', 'CORP', 1000),
+        ('USU02320AG12', 'USD', NULL, 900, 'Amazon', '2021-08-03', 'active', 'CORP', 1000),
+        ('GB00B6460505', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN', 1000),
+        ('GB00B6460506', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN', 1000),
+        ('GB00B6460507', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN', 1000),
+        ('GB00B6460508', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN', 1000),
+        ('GB00B6460509', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN', 1002),
+        ('GB00B6460510', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN', 1002),
+        ('GB00B6460511', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN', 1002),
+        ('GB00B6460512', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN', 1002),
+        ('GB00B6460513', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN', 1002),
+        ('GB00B6460514', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN', 1004),
+        ('GB00B6460515', 'GBP', 'BDCHBW8', 900, 'HM Treasury United Kingdon', '2021-08-09', 'active', 'GOVN', 1004),
+        ('US87973RAA86', 'USD', '87973RAA8', 690, 'TEMASEK FINL I LTD GLOBAL MEDIUM TERM NTS BOOK ENTRY REG S', '2021-08-06', 'active', 'SOVN', 1004),
+        ('IE00B29LNP31', 'USD', '87973RAA8', 340, 'First Norway Alpha Kl.IV', '2030-12-22', 'active', 'SOVN', 1004),
+        ('CE00B29LNP67', 'USD', '98973RAA7', 360, 'ABC Airways', '2030-11-12', 'active', 'CORP', 1004),
+        ('M12356111653', 'GBP', '333456bh0', 700, 'UBS Mews', '2021-08-30', 'active', 'CORP', 1004);
 
 
-INSERT INTO trades (trade_id, isin, trade_type, trade_currency, quantity, trade_settlement_date, trade_status, trade_date, unit_price, coupon_percent, book_name, bond_holder)
+INSERT INTO trade (trade_id, isin, trade_type, trade_currency, quantity, trade_settlement_date, trade_status, trade_date, unit_price, coupon_percent, book_name, bond_holder)
 VALUES
         (1, 'XS1988387210', 'buy', 'USD', 50, '2021-08-04', 'open', '2021-05-13', 90, 4.37, 'trading_book_1', 'AZ Holdings Inc'),
         (2, 'XS1988387210', 'sell', 'GBP', 40, '2021-08-04', 'open', '2021-02-04', 89.56, 4.37, 'trading_book_1', 'AZ Holdings Inc'),
@@ -54,3 +62,4 @@ VALUES
         (29, 'CE00B29LNP67', 'buy', 'USD', 100, '2021-06-23', 'open', '2015-06-23', 98.76, 1.123, 'Trading_book_1', 'XV Space Ltd'),
         (30, 'CE00B29LNP67', 'sell', 'USD', 100, '2021-06-23', 'open', '2015-06-23', 98.76, 1.123, 'Trading_book_1', 'XV Space Ltd'),
         (31, 'M12356111653', 'sell', 'GBP', 200, '2021-08-30', 'open', '2015-06-23', 98.76, 1.123, 'Trading_book_1', 'Akayra Holding');
+
