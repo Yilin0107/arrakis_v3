@@ -1,5 +1,6 @@
 package com.db.grad.javaapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +17,7 @@ public class Trade {
     private Long trade_id;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "isin", referencedColumnName = "isin", insertable = false, updatable = false)
     private Bond bond;
 
