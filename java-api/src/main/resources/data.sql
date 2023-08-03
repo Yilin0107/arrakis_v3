@@ -1,4 +1,4 @@
-INSERT INTO bonds (isin, bond_currency, cusip, face_value, issuer_name, bond_maturity_date, status, type)
+INSERT INTO bond (isin, bond_currency, cusip, face_value, issuer_name, bond_maturity_date, status, type)
 VALUES
     ('XS1988387210', 'USD', NULL, 1000, 'BNPParibasIssu 4,37% Microsoft Corp (USD)', '2021-08-05', 'active', 'CORP'),
     ('USN0280EAR64', 'USD', '123456780', 900, 'Airbus 3.15% USD', '2021-07-30', 'active', 'CORP'),
@@ -21,7 +21,7 @@ VALUES
     ('M12356111653', 'GBP', '333456bh0', 700, 'UBS Mews', '2021-08-30', 'active', 'CORP');
 
 
-INSERT INTO trades (trade_id, isin, trade_type, trade_currency, quantity, trade_settlement_date, trade_status, trade_date, unit_price, coupon_percent, book_name, bond_holder)
+INSERT INTO trade (trade_id, isin, trade_type, trade_currency, quantity, trade_settlement_date, trade_status, trade_date, unit_price, coupon_percent, book_name, bond_holder)
 VALUES
         (1, 'XS1988387210', 'buy', 'USD', 50, '2021-08-04', 'open', '2021-05-13', 90, 4.37, 'trading_book_1', 'AZ Holdings Inc'),
         (2, 'XS1988387210', 'sell', 'GBP', 40, '2021-08-04', 'open', '2021-02-04', 89.56, 4.37, 'trading_book_1', 'AZ Holdings Inc'),

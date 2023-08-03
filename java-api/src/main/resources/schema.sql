@@ -1,7 +1,7 @@
-DROP TABLE IF EXISTS bonds;
-DROP TABLE IF EXISTS trades;
+DROP TABLE IF EXISTS bond;
+DROP TABLE IF EXISTS trade;
 
-CREATE TABLE IF NOT EXISTS bonds (
+CREATE TABLE IF NOT EXISTS bond (
     isin VARCHAR(12) PRIMARY KEY,
     bond_currency VARCHAR(50),
     cusip VARCHAR(9),
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS bonds (
     type VARCHAR(50)
 );
 
-CREATE TABLE IF NOT EXISTS trades (
+CREATE TABLE IF NOT EXISTS trade (
     trade_id INT PRIMARY KEY,
     isin VARCHAR(12),
     trade_type VARCHAR(50),
@@ -25,5 +25,5 @@ CREATE TABLE IF NOT EXISTS trades (
     coupon_percent DECIMAL(5,3),
     book_name VARCHAR(255),
     bond_holder VARCHAR(255),
-    FOREIGN KEY (isin) REFERENCES bonds(isin)
+    FOREIGN KEY (isin) REFERENCES bond(isin)
 );
