@@ -1,5 +1,16 @@
 DROP TABLE IF EXISTS bond;
 DROP TABLE IF EXISTS trade;
+DROP TABLE IF EXISTS employee;
+
+CREATE TABLE IF NOT EXISTS employee (
+    employee_id INT PRIMARY KEY,
+    employee_name VARCHAR(50),
+    employee_surname VARCHAR(50),
+    employee_email VARCHAR(150),
+    employee_department VARCHAR(50),
+    employee_role VARCHAR(50),
+    employee_password_hash VARCHAR(100) -- Adjust the length as per your hashing algorithm
+);
 
 CREATE TABLE IF NOT EXISTS bond (
     isin VARCHAR(12) PRIMARY KEY,
@@ -9,7 +20,9 @@ CREATE TABLE IF NOT EXISTS bond (
     issuer_name VARCHAR(255),
     bond_maturity_date DATE,
     status VARCHAR(50),
-    type VARCHAR(50)
+    type VARCHAR(50),
+    employee_id INT,
+    FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
 
 CREATE TABLE IF NOT EXISTS trade (
@@ -27,3 +40,6 @@ CREATE TABLE IF NOT EXISTS trade (
     bond_holder VARCHAR(255),
     FOREIGN KEY (isin) REFERENCES bond(isin)
 );
+
+
+
