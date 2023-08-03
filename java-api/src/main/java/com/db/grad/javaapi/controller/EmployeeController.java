@@ -3,7 +3,6 @@ package com.db.grad.javaapi.controller;
 
 import com.db.grad.javaapi.model.Bond;
 import com.db.grad.javaapi.model.Employee;
-import com.db.grad.javaapi.model.Trade;
 import com.db.grad.javaapi.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -40,6 +40,9 @@ public class EmployeeController {
 
     @GetMapping("/{id}/bonds")
     public ResponseEntity<List<Bond>> getBondsByEmployeeId(@PathVariable int id) {
+        if (Objects.isNull(getEmployeeById(id).getBody())) {
+               return ResponseEntity.notFound().build();
+        }
         List<Bond> bonds = employeeService.getBondsByEmployeeId(id);
         return ResponseEntity.ok(bonds);
     }
