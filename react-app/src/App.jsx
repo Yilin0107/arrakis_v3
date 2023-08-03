@@ -1,8 +1,20 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
-import { Pets } from "./components/pets/Pets";
+import './App.css';
+import AllBonds from "./components/AllBonds";
 
 const App = () => {
-  return <Pets />;
-};
+  return (
+    <div>
+      
+  
+    <AllBonds />
+
+
+    </div>
+  
+
+  );
+}
 
 export default App;
