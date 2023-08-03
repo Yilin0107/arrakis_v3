@@ -4,6 +4,7 @@ package com.db.grad.javaapi.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,20 +18,30 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int employee_id;
 
-    private String employee_name;
+    @Column(name = "employee_name")
+    private String employeeName;
 
-    private String employee_surname;
+    @Column(name = "employee_surname")
+    private String employeeSurname;
 
-    private String employee_email;
+    @Column(name = "employee_email")
+    private String employeeEmail;
 
-    private String employee_department;
+    @Column(name = "employee_department")
+    private String employeeDepartment;
 
-    private String employee_role;
+    @Column(name = "employee_role")
+    private String employeeRole;
 
-    private String employee_password_hash;
+    @Column(name = "employee_password_hash")
+    private String employeePasswordHash;
 
     @OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Bond> bonds;
 
+    public void setEmployeePasswordHash(String employeePasswordHash) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        this.employeePasswordHash = passwordEncoder.encode(employeePasswordHash);
+    }
 }

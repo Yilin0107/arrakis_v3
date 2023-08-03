@@ -7,8 +7,10 @@ import com.db.grad.javaapi.repository.BondRepository;
 import com.db.grad.javaapi.repository.EmployeeRepository;
 import com.db.grad.javaapi.repository.TradeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Optional;
 

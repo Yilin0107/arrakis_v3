@@ -1,7 +1,6 @@
 package com.db.grad.javaapi.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,21 +22,28 @@ public class Trade {
 
     private String isin;
 
-    private String trade_type;
+    @Column(name = "trade_type")
+    private String tradeType;
 
-    private String trade_currency;
+    @Column(name = "trade_currency")
+    private String tradeCurrency;
 
     private int quantity;
 
-    private Date trade_settlement_date;
+    @Column(name = "trade_settlement_date")
+    private Date tradeSettlementDate;
 
-    private String trade_status;
+    @Column(name = "trade_status")
+    private String tradeStatus;
 
-    private Date trade_date;
+    @Column(name = "trade_date")
+    private Date tradeDate;
 
-    private double unit_price;
+    @Column(name = "unit_price")
+    private double unitPrice;
 
-    private double coupon_percent;
+    @Column(name = "coupon_percent")
+    private double couponPercent;
 
     private String bookName;
 
