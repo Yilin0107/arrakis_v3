@@ -15,7 +15,6 @@ public interface BondRepository extends JpaRepository<Bond, String> {
 
     Optional<Bond> findByIsin(String isin);
 
-//    @Query("SELECT b FROM Bond b WHERE b.bond_maturity_date BETWEEN :startDate AND :endDate")
     @Query("SELECT b FROM Bond b WHERE b.bond_maturity_date >= ?1 AND b.bond_maturity_date <= ?2")
     List<Bond> findByBondMaturityDateBetween(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 }

@@ -14,11 +14,15 @@ import java.util.stream.Collectors;
 
 @Service
 public class BondService {
+    private final BondRepository bondRepository;
 
     @Autowired
-    private BondRepository bondRepository;
+    public BondService(final BondRepository bondRepository) {
+        this.bondRepository = bondRepository;
+    }
 
     public List<Bond> getAllActiveBonds() {
+
         return bondRepository.findAll();
     }
 

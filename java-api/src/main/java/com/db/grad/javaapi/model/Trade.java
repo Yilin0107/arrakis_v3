@@ -1,16 +1,23 @@
 package com.db.grad.javaapi.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class Trade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long trade_id;
+
+    @ManyToOne
+    @JoinColumn(name = "isin", referencedColumnName = "isin", insertable = false, updatable = false)
+    private Bond bond;
 
     private String isin;
 
