@@ -3,7 +3,7 @@ package com.db.grad.javaapi.controller;
 
 import com.db.grad.javaapi.model.Bond;
 import com.db.grad.javaapi.model.Employee;
-import com.db.grad.javaapi.service.EmployeeService;
+import com.db.grad.javaapi.service.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,22 +19,22 @@ import java.util.Optional;
 @RequestMapping("/employees")
 public class EmployeeController {
 
-    private final EmployeeService employeeService;
+    private final EmployeeServiceImpl employeeServiceImpl;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    public EmployeeController(EmployeeServiceImpl employeeServiceImpl) {
+        this.employeeServiceImpl = employeeServiceImpl;
     }
 
     @GetMapping
     public ResponseEntity<List<Employee>> getAllEmployees() {
-        List<Employee> employees = employeeService.getAllEmployees();
+        List<Employee> employees = employeeServiceImpl.getAllEmployees();
         return ResponseEntity.ok(employees);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable int id) {
-        Optional<Employee> employee = employeeService.getEmployeeById(id);
+        Optional<Employee> employee = employeeServiceImpl.getEmployeeById(id);
         return employee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
@@ -43,7 +43,7 @@ public class EmployeeController {
         if (Objects.isNull(getEmployeeById(id).getBody())) {
                return ResponseEntity.notFound().build();
         }
-        List<Bond> bonds = employeeService.getBondsByEmployeeId(id);
+        List<Bond> bonds = employeeServiceImpl.getBondsByEmployeeId(id);
         return ResponseEntity.ok(bonds);
     }
 }
