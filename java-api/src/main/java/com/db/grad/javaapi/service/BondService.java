@@ -1,51 +1,22 @@
 package com.db.grad.javaapi.service;
 
 import com.db.grad.javaapi.model.Bond;
-import com.db.grad.javaapi.repository.BondRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-@Service
-public class BondService {
-    private final BondRepository bondRepository;
+public interface BondService {
 
-    @Autowired
-    public BondService(final BondRepository bondRepository) {
-        this.bondRepository = bondRepository;
-    }
+    List<Bond> getAllActiveBonds();
 
-    public List<Bond> getAllActiveBonds() {
+    List<Bond> findBondsDueForMaturityInLastAndNextFiveDays();
 
-        return bondRepository.findAll();
-    }
+    List<Bond> findBondsDueForMaturityInLastAndNextFiveDaysByDate(String givenDate);
 
-    // TODO: check the dateformat in database and implement
+    List<Bond> findBondsDueForMaturityInLastAndNextFiveWorkDaysByDate(String givenDate);
 
-    public List<Bond> findBondsDueForMaturityInLastAndNextFiveDays() {
-        java.util.Date date = new java.util.Date();
-        Date currentDate = new Date(date.getTime());
-        // for testing purpose
-//        String dateString = "2021-08-05";
-//        Date currentDate = Date.valueOf(dateString);
+    Optional<Bond> findByIsin(String isin);
 
-        Date lastFiveDays = new Date(currentDate.getTime() - 5 * 24 * 60 * 60 * 1000); // 5 days ago
-        Date nextFiveDays = new Date(currentDate.getTime() + 5 * 24 * 60 * 60 * 1000); // 5 days from now
-        return bondRepository.findByBondMaturityDateBetween(lastFiveDays, nextFiveDays);
-    }
-
-    public Optional<Bond> findByIsin(String isin) {
-        return bondRepository.findByIsin(isin);
-    }
-
-
-    public Map<String, String> getBondIsinIssuerMap() {
-        List<Bond> bonds = bondRepository.findAll();
-        return bonds.stream().collect(Collectors.toMap(Bond::getIsin, Bond::getIssuerName));
-    }
+    Map<String, String> getBondIsinIssuerMap();
 }

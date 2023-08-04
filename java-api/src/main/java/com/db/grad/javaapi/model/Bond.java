@@ -35,6 +35,9 @@ public class Bond {
 
     private String type;
 
+    @Column(name = "employee_id")
+    private int employeeId;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference
     @JoinColumn(name = "employee_id", referencedColumnName = "employee_id", insertable = false, updatable = false)

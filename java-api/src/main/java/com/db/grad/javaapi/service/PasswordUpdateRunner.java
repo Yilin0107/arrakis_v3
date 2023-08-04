@@ -6,15 +6,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PasswordUpdateRunner implements CommandLineRunner {
-    private final EmployeeService employeeService;
+    private final EmployeeServiceImpl employeeServiceImpl;
 
     @Autowired
-    public PasswordUpdateRunner(EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    public PasswordUpdateRunner(EmployeeServiceImpl employeeServiceImpl) {
+        this.employeeServiceImpl = employeeServiceImpl;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        employeeService.initializeEmployeesPasswordHash();
+        employeeServiceImpl.initializeEmployeesPasswordHash();
     }
 }
