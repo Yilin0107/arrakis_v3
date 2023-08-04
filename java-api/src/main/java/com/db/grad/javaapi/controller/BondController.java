@@ -57,6 +57,16 @@ public class BondController {
         }
     }
 
+    @PostMapping("/maturity/workday/date")
+    public ResponseEntity<List<Bond>> getBondsDueForMaturityInLastAndNextFiveWorkDaysByDate(@RequestParam String dateStr) {
+        List<Bond> bonds = bondServiceImpl.findBondsDueForMaturityInLastAndNextFiveWorkDaysByDate(dateStr);
+        if (bonds.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(bonds);
+        }
+    }
+
     @GetMapping("/issuers")
     public ResponseEntity<Map<String, String>> getBondIsinIssuerMap() {
         Map<String, String> bondIsinIssuerMap = bondServiceImpl.getBondIsinIssuerMap();

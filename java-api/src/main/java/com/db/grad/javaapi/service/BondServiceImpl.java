@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,6 +38,49 @@ public class BondServiceImpl implements BondService{
         Date nextFiveDays = new Date(currentDate.getTime() + 5 * 24 * 60 * 60 * 1000); // 5 days from now
         return bondRepository.findByBondMaturityDateBetween(lastFiveDays, nextFiveDays);
     }
+
+    @Override
+    public List<Bond> findBondsDueForMaturityInLastAndNextFiveWorkDaysByDate(String givenDate) {
+        SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date currentDate = new Date(System.currentTimeMillis());
+
+        try {
+            java.util.Date utilDate = inputDateFormat.parse(givenDate);
+            currentDate = new Date(utilDate.getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+        List<Bond> bonds = new ArrayList<>();
+
+        // Find previous five working days
+        for (int i = 0; i < 5; i++) {
+            do {
+                calendar.add(Calendar.DAY_OF_WEEK, -1);
+            } while (!isWorkingDay(calendar)); // Skip weekends
+        }
+        Date lastFiveDays = new Date(calendar.getTimeInMillis());
+
+        calendar.setTime(currentDate);
+
+        // Find next five working days
+        for (int i = 0; i < 5; i++) {
+            do {
+                calendar.add(Calendar.DAY_OF_WEEK, 1);
+            } while (!isWorkingDay(calendar)); // Skip weekends
+        }
+        Date nextFiveDays = new Date(calendar.getTimeInMillis());
+
+        return bondRepository.findByBondMaturityDateBetween(lastFiveDays, nextFiveDays);
+    }
+
+    private boolean isWorkingDay(Calendar calendar) {
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        return dayOfWeek != Calendar.SATURDAY && dayOfWeek != Calendar.SUNDAY;
+    }
+
 
     @Override
     public List<Bond> findBondsDueForMaturityInLastAndNextFiveDaysByDate(String givenDate) {
