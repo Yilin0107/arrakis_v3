@@ -3,6 +3,7 @@ package com.db.grad.javaapi.controller;
 import com.db.grad.javaapi.model.Employee;
 import com.db.grad.javaapi.model.LoginUser;
 import com.db.grad.javaapi.repository.EmployeeRepository;
+import com.db.grad.javaapi.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,16 +15,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthController {
 
-    private final EmployeeRepository employeeRepository;
+    private final EmployeeService employeeService;
 
     @Autowired
-    public AuthController(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
+    public AuthController(EmployeeService employeeRepository) {
+        this.employeeService = employeeRepository;
     }
+
+//    @GetMapping("/setPass")
+//    public void initializeEmployeesPasswordHash() {
+//        List<Employee> employees = employeeRepository.findAll();
+//
+//        for (Employee employee : employees) {
+//            employee.setEmployeePasswordHash("defaultPassword"+employee.getEmployeeName());
+//            employeeRepository.save(employee);
+//        }
+//    }
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginUser user) {
-        Employee existingUser = employeeRepository.findByEmployeeEmail(user.getEmail());
+        Employee existingUser = employeeService.findByEmployeeEmail(user.getEmail());
 
         if (existingUser != null) {
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

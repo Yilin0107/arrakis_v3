@@ -27,6 +27,15 @@ public class EmployeeService {
         this.tradeRepository = tradeRepository;
     }
 
+    public void initializeEmployeesPasswordHash() {
+        List<Employee> employees = employeeRepository.findAll();
+
+        for (Employee employee : employees) {
+            employee.setEmployeePasswordHash("defaultPassword"+employee.getEmployeeName());
+            employeeRepository.save(employee);
+        }
+    }
+
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
@@ -37,5 +46,9 @@ public class EmployeeService {
 
     public List<Bond> getBondsByEmployeeId(int employeeId) {
         return bondRepository.findByEmployee_EmployeeId(employeeId);
+    }
+
+    public Employee findByEmployeeEmail(String email) {
+        return employeeRepository.findByEmployeeEmail(email);
     }
 }
