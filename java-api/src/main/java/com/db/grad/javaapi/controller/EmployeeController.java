@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -45,5 +46,14 @@ public class EmployeeController {
         }
         List<Bond> bonds = employeeServiceImpl.getBondsByEmployeeId(id);
         return ResponseEntity.ok(bonds);
+    }
+
+    @GetMapping("/books/{employeeId}")
+    public ResponseEntity<Map<String, List<Bond>>> getBondsByEmployeeIdGroupedByBook(@PathVariable int employeeId) {
+        Map<String, List<Bond>> result = employeeServiceImpl.findBondsByEmployeeIdGroupedByBook(employeeId);
+        if (result.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(result);
     }
 }

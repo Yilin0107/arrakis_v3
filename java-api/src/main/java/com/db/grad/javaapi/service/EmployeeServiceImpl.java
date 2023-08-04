@@ -2,14 +2,14 @@ package com.db.grad.javaapi.service;
 
 import com.db.grad.javaapi.model.Bond;
 import com.db.grad.javaapi.model.Employee;
+import com.db.grad.javaapi.model.Trade;
 import com.db.grad.javaapi.repository.BondRepository;
 import com.db.grad.javaapi.repository.EmployeeRepository;
 import com.db.grad.javaapi.repository.TradeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -50,5 +50,23 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee findByEmployeeEmail(String email) {
         return employeeRepository.findByEmployeeEmail(email);
+    }
+
+    @Override
+    public Map<String, List<Bond>> findBondsByEmployeeIdGroupedByBook(int employeeId) {
+        Map<String, List<Bond>> result = new HashMap<>();
+
+        Employee employee = employeeRepository.findById(employeeId).orElse(null);
+        if (employee != null) {
+            for (Bond bond : employee.getBonds()) {
+                for (Trade trade : bond.getTrades()) {
+                    String bookName = trade.getBookName();
+
+                    result.putIfAbsent(bookName, new ArrayList<>());
+                    result.get(bookName).add(bond);
+                }
+            }
+        }
+        return result;
     }
 }

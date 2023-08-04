@@ -14,6 +14,8 @@ public interface BondService {
 
     List<Bond> findBondsDueForMaturityInLastAndNextFiveDaysByDate(String givenDate);
 
+    List<Bond> findBondsDueForMaturityInLastAndNextFiveWorkDaysByDate(String givenDate);
+
     Optional<Bond> findByIsin(String isin);
 
     Map<String, String> getBondIsinIssuerMap();

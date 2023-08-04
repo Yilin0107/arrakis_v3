@@ -4,6 +4,7 @@ import com.db.grad.javaapi.model.Bond;
 import com.db.grad.javaapi.model.Employee;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface EmployeeService {
@@ -15,4 +16,6 @@ public interface EmployeeService {
     List<Bond> getBondsByEmployeeId(int employeeId);
 
     Employee findByEmployeeEmail(String email);
+
+    Map<String, List<Bond>> findBondsByEmployeeIdGroupedByBook(int employeeId);
 }
