@@ -1,20 +1,26 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from "react";
+import React, { useState } from "react";
 import './App.css';
-import AllBonds from "./components/AllBonds";
 import SignIn from './components/SignIn';
-import { Dashboard } from '@mui/icons-material';
 import FinancialDashboard from './components/FinancialDashboard';
+import { Route, Routes } from 'react-router-dom'; 
 
-const App = () => {
-  return (
-    <div>
-      
-    <FinancialDashboard />
+function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
-    </div>
   
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
 
+  return (
+    <>
+      <Routes>
+        <Route path="/login" element={<SignIn setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/dashboard" element={<FinancialDashboard />} />
+      </Routes>
+    </>
+   
   );
 }
 
