@@ -15,13 +15,13 @@ public interface BondRepository extends JpaRepository<Bond, String> {
 
     Optional<Bond> findByIsin(String isin);
 
-    @Query("SELECT b FROM Bond b WHERE b.bond_maturity_date >= ?1 AND b.bond_maturity_date <= ?2")
+    @Query("SELECT b FROM Bond b WHERE b.bondMaturityDate >= ?1 AND b.bondMaturityDate <= ?2")
     List<Bond> findByBondMaturityDateBetween(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
     @Query("SELECT b.cusip FROM Bond b WHERE b.isin = :isin")
     String findCUSIPByISIN(@Param("isin") String isin);
 
-    @Query("SELECT b.issuer_name FROM Bond b WHERE b.isin = :isin")
+    @Query("SELECT b.issuerName FROM Bond b WHERE b.isin = :isin")
     String findIssuerByISIN(@Param("isin") String isin);
 
     @Query("SELECT t.bondHolder FROM Trade t WHERE t.isin = :isin")

@@ -5,7 +5,6 @@ import com.db.grad.javaapi.repository.BondRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.sql.Date;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +46,6 @@ public class BondService {
 
     public Map<String, String> getBondIsinIssuerMap() {
         List<Bond> bonds = bondRepository.findAll();
-        return bonds.stream().collect(Collectors.toMap(Bond::getIsin, Bond::getIssuer_name));
+        return bonds.stream().collect(Collectors.toMap(Bond::getIsin, Bond::getIssuerName));
     }
 }

@@ -2,7 +2,6 @@ package com.db.grad.javaapi.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,15 +17,19 @@ public class Bond {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String isin;
 
-    private String bond_currency;
+    @Column(name = "bond_currency")
+    private String bondCurrency;
 
     private String cusip;
 
-    private int face_value;
+    @Column(name = "face_value")
+    private int faceValue;
 
-    private String issuer_name;
+    @Column(name = "issuer_name")
+    private String issuerName;
 
-    private Date bond_maturity_date;
+    @Column(name = "bond_maturity_date")
+    private Date bondMaturityDate;
 
     private String status;
 
