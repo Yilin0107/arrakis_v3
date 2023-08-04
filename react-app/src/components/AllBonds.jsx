@@ -1,5 +1,6 @@
 import React , {useState, useEffect} from 'react';
 import BondsDetail from './BondsDetail';
+import Test from './Test';
 import Row from 'react-bootstrap/Row';
 import { getAllBonds } from '../services/bond-service';
 
@@ -8,7 +9,7 @@ const AllBonds = () => {
   const [filterType, setFilterType] = useState(''); // Filter by bond type (e.g., 'CORP', 'GOVN', 'SOVN')
   const [filterCurrency, setFilterCurrency] = useState('');
   const [filterIssuerName, setFilterIssuerName] = useState('')
-  const [filterEmployeeId, setEmployeeID] =  useState('') // Filter by currency (e.g., 'USD', 'GBP')
+  const [filterEmployeeId, setFilterEmployeeId] =  useState('') // Filter by currency (e.g., 'USD', 'GBP')
   // Add more state variables for other filter criteria if needed
 
   useEffect(() => {
@@ -36,12 +37,10 @@ const AllBonds = () => {
     if (filterCurrency && bond.bondCurrency !== filterCurrency) {
       return false;
     }
-    if (filterIssuerName && bond.issuerName !== filterIssuerName) {
-          return false;
-        }
-    if (filterEmployeeId && bond.employeeId !== filterEmployeeID) {
-               return false;
 
+    if (filterEmployeeId && bond.employeeId.toString !== filterEmployeeId) {
+               return false;
+    }
     // Add more filtering conditions here for other criteria if needed
     return true;
   });
@@ -73,6 +72,25 @@ const AllBonds = () => {
           {/* Add more options based on your bond currencies */}
         </select>
       </div>
+
+       <div>
+              <label>Filter by Employee Id:</label>
+              <select
+                value={filterEmployeeId}
+                onChange={e => setFilterType(e.target.value)}
+              >
+                <option value="">All</option>
+                <option value="1000">1000</option>
+                <option value="1001">1001</option>
+                <option value="1002">1002</option>
+                <option value="1003">1003</option>
+                <option value="1004">1004</option>
+              </select>
+            </div>
+
+            <div>
+            <Test />
+            </div>
 
 
       <Row>

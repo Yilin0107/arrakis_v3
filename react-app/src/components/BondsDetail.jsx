@@ -19,6 +19,7 @@ const BondsDetail = (props) => {
             <strong>Status:</strong> {props.info.status}<br />
             <strong>Type:</strong> {props.info.type}<br />
             <strong>Face Value:</strong> {props.info.faceValue}<br />
+            <strong>Employee Id:</strong> {props.info.employeeId}<br />
           </Card.Text>
         </Card.Body>
       </Card>
