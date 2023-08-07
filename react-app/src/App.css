@@ -64,7 +64,7 @@
 }
 
 .filter-container {
-  display: flex;
+  display: inline;
   align-items: center;
   margin-right: 10px; /* Add some space between the filter containers */
 }

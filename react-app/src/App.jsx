@@ -4,22 +4,8 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignIn from './services/SignIn';
 import AllBonds from "./components/AllBonds";
+import AllTrades from "./components/AllTrades";
 
-// const App = () => {
-//   return (
-//     <div>
-//
-//
-//     <AllBonds />
-//
-//
-//     </div>
-//
-//
-//   );
-// }
-//
-// export default App;
 
 function App() {
   return (
@@ -27,6 +13,7 @@ function App() {
           <Routes>
               <Route path="/" element={<SignIn />} />
               <Route path="/bonds" element={<AllBonds />} />
+              <Route path="/trades" element={<AllTrades />} />
           </Routes>
       </Router>
   );
