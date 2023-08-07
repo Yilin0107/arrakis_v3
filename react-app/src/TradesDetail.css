@@ -9,7 +9,7 @@
 }
 
 .trade-card.expanded {
-  height: 300px; /* Set an appropriate height when expanded */
+  height: 400px; /* Set an appropriate height when expanded */
 }
 
 .expand-arrow {

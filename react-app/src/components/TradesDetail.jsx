@@ -4,6 +4,11 @@ import '../TradesDetail.css'; // Import your custom CSS for styling
 
 const TradesDetail = (props) => {
   // Assuming props.info.bondMaturityDate contains the date string "2021-08-04T23:00:00.000+00:00"
+   const tradeDate = new Date(props.info.tradeDate);
+   const formattedTradeDate = tradeDate.toISOString().split('T')[0];
+
+    const tradeSettlementDate = new Date(props.info.tradeSettlementDate);
+    const formattedTradeSettlementDate = tradeSettlementDate.toISOString().split('T')[0];
 
   const [expanded, setExpanded] = useState(false);
 
@@ -20,7 +25,7 @@ const TradesDetail = (props) => {
             <Card.Text>
               <strong>Trade Id:</strong> {props.info.trade_id}<br />
               <strong>Bond Holder:</strong> {props.info.bondHolder}<br />
-              <strong>Trade Date:</strong> {props.info.tradeDate}<br />
+              <strong>Trade Date:</strong> {formattedTradeDate}<br />
               <strong>Trade Type:</strong> {props.info.tradeType}<br />
             </Card.Text>
           )}
@@ -28,9 +33,9 @@ const TradesDetail = (props) => {
             <Card.Text>
               <strong>Trade Id:</strong> {props.info.trade_id}<br />
               <strong>Bond Holder:</strong> {props.info.bondHolder}<br />
-              <strong>Trade Date:</strong> {props.info.tradeDate}<br />
+              <strong>Trade Date:</strong> {formattedTradeDate}<br />
               <strong>Trade Type:</strong> {props.info.tradeType}<br />
-              <strong>Trade Settlement Date:</strong> {props.info.tradeSettlementDate}<br />
+              <strong>Trade Settlement Date:</strong> {formattedTradeSettlementDate}<br />
               <strong>Trade Status:</strong> {props.info.tradeStatus}<br />
               <strong>Trade Currency:</strong> {props.info.tradeCurrency}<br />
               <strong>Trade Quantity:</strong> {props.info.quantity}<br />
