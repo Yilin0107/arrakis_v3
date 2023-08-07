@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/employees")
@@ -49,8 +46,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/books/{employeeId}")
-    public ResponseEntity<Map<String, List<Bond>>> getBondsByEmployeeIdGroupedByBook(@PathVariable int employeeId) {
-        Map<String, List<Bond>> result = employeeServiceImpl.findBondsByEmployeeIdGroupedByBook(employeeId);
+    public ResponseEntity<Set<String>> findBooksByEmployeeId(@PathVariable int employeeId) {
+        Set<String> result = employeeServiceImpl.findBooksByEmployeeId(employeeId);
         if (result.isEmpty()) {
             return ResponseEntity.notFound().build();
         }

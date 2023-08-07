@@ -30,10 +30,6 @@ public class BondServiceImpl implements BondService{
     public List<Bond> findBondsDueForMaturityInLastAndNextFiveDays() {
         java.util.Date date = new java.util.Date();
         Date currentDate = new Date(date.getTime());
-        // for testing purpose
-//        String dateString = "2021-08-05";
-//        Date currentDate = Date.valueOf(dateString);
-
         Date lastFiveDays = new Date(currentDate.getTime() - 5 * 24 * 60 * 60 * 1000); // 5 days ago
         Date nextFiveDays = new Date(currentDate.getTime() + 5 * 24 * 60 * 60 * 1000); // 5 days from now
         return bondRepository.findByBondMaturityDateBetween(lastFiveDays, nextFiveDays);
