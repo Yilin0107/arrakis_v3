@@ -69,4 +69,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return result;
     }
+
+    @Override
+    public Set<String> findBooksByEmployeeId(int employeeId) {
+        Set<String> result = new HashSet<>();
+
+        Employee employee = employeeRepository.findById(employeeId).orElse(null);
+        if (employee != null) {
+            for (Bond bond : employee.getBonds()) {
+                for (Trade trade : bond.getTrades()) {
+                    result.add(trade.getBookName());
+                }
+            }
+        }
+        return result;
+    }
 }
