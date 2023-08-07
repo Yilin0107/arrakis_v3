@@ -5,6 +5,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import './Maturity.css'
+import Cards from './Cards'
 
 const bondsData = [
     {
@@ -203,7 +204,7 @@ const bondsData = [
 ];
 
 function Maturity() {
-  const [selectedDate, setSelectedDate] = useState(dayjs('2021-08-09'));
+  const [selectedDate, setSelectedDate] = useState(dayjs('2021-08-10'));
 
   const handleDateChange = (newDate) => {
     setSelectedDate(newDate);
@@ -212,7 +213,7 @@ function Maturity() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DateCalendar', 'DateCalendar']}>
-        <DemoItem label="Choose date">
+        <DemoItem label="Choose date:">
           <DateCalendar value={selectedDate} onChange={handleDateChange} />
         </DemoItem>
       </DemoContainer>
@@ -220,20 +221,21 @@ function Maturity() {
       <div>
         {[...Array(11)].map((_, index) => {
           const currentDate = selectedDate.subtract(5, 'day').add(index, 'day');
-          const filteredBonds = bondsData.filter(bond =>
+          const filteredBonds = bondsData.filter((bond) =>
             dayjs(bond.maturityDate).isSame(currentDate, 'day')
           );
 
           return (
-            <div key={currentDate.format('YYYY-MM-DD')} className="bond-container">
+            <div
+              key={currentDate.format('YYYY-MM-DD')}
+              className="bond-container"
+            >
               <h2>{currentDate.format('YYYY-MM-DD')}</h2>
               {filteredBonds.length === 0 ? (
                 <p>No bonds existing for this day.</p>
               ) : (
-                filteredBonds.map(bond => (
-                  <div key={bond.isin} className="bond-box">
-                    <p>{bond.isin}</p>
-                  </div>
+                filteredBonds.map((bond) => (
+                  <Cards key={bond.isin} bond={bond} />
                 ))
               )}
             </div>
