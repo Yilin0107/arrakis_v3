@@ -93,3 +93,19 @@
   background-color: #007bff;
   color: #fff;
 }
+
+/* Assuming you have already defined the blueBandStyle for the parent div */
+
+.back-button {
+  float: right; /* Shifts the button to the right */
+  background-color: grey;
+  border: 2px solid #007bff;
+  font-size: 18px;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Add the back arrow symbol as content */
+.back-button::before {
+  content: "\2190"; /* Unicode character for left-pointing arrow */
+}

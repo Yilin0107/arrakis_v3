@@ -6,6 +6,12 @@ import { getAllTrades } from '../services/trade-service';
 
 
 const AllTrades = () => {
+
+  const handleButtonClick = () => {
+      // Navigate to the FinancialDashboard page when the button is clicked
+      window.location.href = '/dashboard';
+    };
+
   const [trades, setTrades] = useState([]);
   const [filterTradeType, setFilterTradeType] = useState(''); // Filter by bond type (e.g., 'CORP', 'GOVN', 'SOVN')
   const [filterTradeCurrency, setFilterTradeCurrency] = useState('');
@@ -99,6 +105,13 @@ const AllTrades = () => {
             <h1>Trades Detail Page</h1>
           </div>
           <div>
+          <br />
+          </div>
+          <div>
+         <button class="back-button" onClick={handleButtonClick}>Go Back to Navigation Page</button>
+         </div>
+          <div>
+          <br />
           <br />
           </div>
                <div
