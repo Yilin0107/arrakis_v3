@@ -42,9 +42,9 @@ export default function SignIn() {
         });
 
         if (response.ok) {
-            window.location.href = 'http://localhost:3000/bonds';
+            window.location.href = 'http://localhost:3000/dashboard';
         } else {
-            setSnackbarMessage('Invalid email or password'); // 设置错误提示消息
+            setSnackbarMessage('Invalid email or password');
             setOpenSnackbar(true);
         }
     };
