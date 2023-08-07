@@ -4,6 +4,12 @@ import Row from 'react-bootstrap/Row';
 import { getAllBonds } from '../services/bond-service';
 
 const AllBonds = () => {
+
+  const handleButtonClick = () => {
+        // Navigate to the FinancialDashboard page when the button is clicked
+        window.location.href = '/dashboard';
+      };
+
   const [bonds, setBonds] = useState([]);
   const [filterType, setFilterType] = useState(''); // Filter by bond type (e.g., 'CORP', 'GOVN', 'SOVN')
   const [filterCurrency, setFilterCurrency] = useState('');
@@ -81,6 +87,13 @@ const AllBonds = () => {
             <h1>Bonds Detail Page</h1>
           </div>
           <div>
+          <br />
+          </div>
+          <div>
+         <button class="back-button" onClick={handleButtonClick}>Go Back to Navigation Page</button>
+          </div>
+          <div>
+          <br />
           <br />
           </div>
                <div
