@@ -13,31 +13,27 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AuthService from '../services/AuthService';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const defaultTheme = createTheme();
 
-const SignIn = ({ setIsLoggedIn }) => {
-    const navigate = useNavigate();
-    const [email, setEmail] = React.useState(''); 
-    const [password, setPassword] = React.useState(''); 
+export default function SignIn() {
+    const [error, setError] = useState('');
+  
     const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        try {
-            
-            const response = await AuthService.login(email, password);
-            console.log(response); 
-
-            if (response.success) {
-                
-                setIsLoggedIn(true);
-                navigate('/dashboard');
-            } else {
-                console.error('Login failed:', response.error);
-            }
-        } catch (error) {
-            console.error(error);
-        }
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+  
+      const email = data.get('email');
+      const password = data.get('password');
+  
+      try {
+        const response = await AuthService.login(email, password);
+        console.log(response); // Handle the response, e.g., redirect to another page on successful login
+      } catch (error) {
+        setError('Invalid credentials'); // Set the error message in case of failed login
+        console.error(error);
+      }
     };
 
                                 
@@ -99,5 +95,5 @@ return (
     </ThemeProvider>
     );
 };
-export default SignIn;
+
 
