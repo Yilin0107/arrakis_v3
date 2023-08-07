@@ -23,7 +23,7 @@ public class AuthController {
         this.employeeServiceImpl = employeeRepository;
     }
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginUser user) {
+    public ResponseEntity<String> login(@RequestBody final LoginUser user) {
         Employee existingUser = employeeServiceImpl.findByEmployeeEmail(user.getEmail());
 
         if (existingUser != null) {
