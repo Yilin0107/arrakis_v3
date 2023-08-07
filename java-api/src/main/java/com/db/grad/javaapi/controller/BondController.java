@@ -29,7 +29,7 @@ public class BondController {
     }
 
     @GetMapping("/{isin}")
-    public ResponseEntity<?> getBondByIsin(@PathVariable String isin) {
+    public ResponseEntity<?> getBondByIsin(@PathVariable final String isin) {
         Optional<Bond> bond = bondServiceImpl.findByIsin(isin);
         if (bond.isPresent()){
             return ResponseEntity.ok(bond);
@@ -48,7 +48,7 @@ public class BondController {
     }
 
     @PostMapping("/maturity/date")
-    public ResponseEntity<List<Bond>> getBondsDueForMaturityInLastAndNextFiveDaysByDate(@RequestParam String dateStr) {
+    public ResponseEntity<List<Bond>> getBondsDueForMaturityInLastAndNextFiveDaysByDate(@RequestParam final String dateStr) {
         List<Bond> bonds = bondServiceImpl.findBondsDueForMaturityInLastAndNextFiveDaysByDate(dateStr);
         if (bonds.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -58,7 +58,7 @@ public class BondController {
     }
 
     @PostMapping("/maturity/workday/date")
-    public ResponseEntity<List<Bond>> getBondsDueForMaturityInLastAndNextFiveWorkDaysByDate(@RequestParam String dateStr) {
+    public ResponseEntity<List<Bond>> getBondsDueForMaturityInLastAndNextFiveWorkDaysByDate(@RequestParam final String dateStr) {
         List<Bond> bonds = bondServiceImpl.findBondsDueForMaturityInLastAndNextFiveWorkDaysByDate(dateStr);
         if (bonds.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -69,7 +69,7 @@ public class BondController {
 
     @GetMapping("/issuers")
     public ResponseEntity<Map<String, String>> getBondIsinIssuerMap() {
-        Map<String, String> bondIsinIssuerMap = bondServiceImpl.getBondIsinIssuerMap();
+       final Map<String, String> bondIsinIssuerMap = bondServiceImpl.getBondIsinIssuerMap();
 
         if (!bondIsinIssuerMap.isEmpty()) {
             return ResponseEntity.ok(bondIsinIssuerMap);
