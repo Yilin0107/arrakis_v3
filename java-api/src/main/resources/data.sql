@@ -31,12 +31,12 @@ VALUES
 
 INSERT INTO trade (trade_id, isin, trade_type, trade_currency, quantity, trade_settlement_date, trade_status, trade_date, unit_price, coupon_percent, book_name, bond_holder)
 VALUES
-        (1, 'XS1988387210', 'buy', 'USD', 50, '2021-08-04', 'open', '2021-05-13', 90, 4.37, 'trading_book_1', 'AZ Holdings Inc'),
-        (2, 'XS1988387210', 'sell', 'GBP', 40, '2021-08-04', 'open', '2021-02-04', 89.56, 4.37, 'trading_book_1', 'AZ Holdings Inc'),
-        (3, 'USN0280EAR64', 'buy', 'USD', 1000, '2021-08-23', 'open', '2021-05-13', 105.775, 3.15, 'trading_book_2', 'Acme co'),
-        (4, 'USN0280EAR64', 'sell', 'GBP', 900, '2021-09-10', 'open', '2021-02-04', 105.775, 3.15, 'trading_book_2', 'Acme+A1:R5 Co'),
+        (1, 'XS1988387210', 'buy', 'USD', 50, '2021-08-04', 'open', '2021-05-13', 90, 4.37, 'Trading_book_1', 'AZ Holdings Inc'),
+        (2, 'XS1988387210', 'sell', 'GBP', 40, '2021-08-04', 'open', '2021-02-04', 89.56, 4.37, 'Trading_book_1', 'AZ Holdings Inc'),
+        (3, 'USN0280EAR64', 'buy', 'USD', 1000, '2021-08-23', 'open', '2021-05-13', 105.775, 3.15, 'Trading_book_2', 'Acme co'),
+        (4, 'USN0280EAR64', 'sell', 'GBP', 900, '2021-09-10', 'open', '2021-02-04', 105.775, 3.15, 'Trading_book_2', 'Acme+A1:R5 Co'),
         (5, 'A12356111', 'buy', 'USD', 50, '2021-08-23', 'open', '2021-05-13', 90, 2, 'Trading_book_3', 'Sovereign Investments'),
-        (6, 'USN0280EAR64', 'buy', 'USD', 1000, '2021-08-23', 'open', '2021-05-13', 105.775, 3.15, 'trading_book_2', 'Astra Trading Ltd'),
+        (6, 'USN0280EAR64', 'buy', 'USD', 1000, '2021-08-23', 'open', '2021-05-13', 105.775, 3.15, 'Trading_book_2', 'Astra Trading Ltd'),
         (7, 'A12356111', 'sell', 'USD', 50, '2021-08-23', 'open', '2021-05-13', 90, 2, 'Trading_book_2', 'Sovereign Investments'),
         (8, 'USU02320AG12', 'buy', 'GBP', 60, '2021-09-27', 'open', '2021-04-02', 98.56, 3.15, 'Trading_book_4', 'Muncipal Gov Of Orange County'),
         (9, 'USU02320AG12', 'buy', 'USD', 50, '2021-08-23', 'open', '2021-08-23', 98.56, 3.15, 'Trading_book_4', 'Muncipal Gov Of Orange County'),
