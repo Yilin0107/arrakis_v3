@@ -33,6 +33,21 @@ const AllBonds = () => {
       });
   };
 
+    useEffect(() => {
+      getBooksFromAPI();
+    }, []);
+
+    const getBooksFromAPI = () => {
+      getAllBonds()
+        .then(res => {
+          setBonds(res.data);
+        })
+        .catch(err => {
+          setBonds([]);
+          console.log(err);
+        });
+    };
+
   // Filter the bonds based on the selected criteria
   const filteredBonds = bonds.filter(bond => {
     // Filter by bond type
