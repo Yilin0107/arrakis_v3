@@ -16,9 +16,9 @@ import { Link } from 'react-router-dom'; // 导入 Link 组件
 const defaultTheme = createTheme();
 
 const items = [
-    { name: 'Bonds', description: 'Bond is a type of Investment Security where an Investor lends money to a company or government for a set period of time, in exchange for regular interest payments.'},
-    { name: 'Trades', description: 'Trade is the voluntary exchange of goods or services between different economic actors.' },
-    { name: 'Maturity', description: 'The term fixed income is important for this project and is often used to describe Bonds, since your investment earns fixed payments over the life of the Bond.' },
+    { name: 'Bonds', description: 'Click here to view all the Bond related information.'},
+    { name: 'Trades', description: 'Click here to view all the Trade related information' },
+    { name: 'Maturity', description: 'Click here to view all the Bond maturity information' },
 ];
 
 export default function FinancialDashboard() {
@@ -48,7 +48,7 @@ export default function FinancialDashboard() {
                             color="text.primary"
                             gutterBottom
                         >
-                            Financial Dashboard
+                            Bond Management System
                         </Typography>
                     </Container>
                 </Box>
