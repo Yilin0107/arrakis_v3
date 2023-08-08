@@ -6,6 +6,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import './Maturity.css'
 import Cards from './Cards'
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const bondsData = [
     {
@@ -218,7 +221,7 @@ function Maturity() {
         </DemoItem>
       </DemoContainer>
 
-      <div>
+      <Slider dots infinite slidesToShow={2} slidesToScroll={2}>
         {[...Array(11)].map((_, index) => {
           const currentDate = selectedDate.subtract(5, 'day').add(index, 'day');
           const filteredBonds = bondsData.filter((bond) =>
@@ -241,7 +244,7 @@ function Maturity() {
             </div>
           );
         })}
-      </div>
+      </Slider>
     </LocalizationProvider>
   );
 }

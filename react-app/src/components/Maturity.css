@@ -1,16 +1,4 @@
 
-.bond-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
-  width: 300px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
-}
-
 .bond-container-header {
   display: flex;
   justify-content: space-between;
@@ -24,21 +12,6 @@
 }
 
 
-.bond-box-container {
-  display: flex;
-  flex-direction: column; 
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.bond-box {
-  padding: 10px;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
-}
-
-
 .selected-date {
   margin-top: 20px;
   font-size: 1.2rem;
@@ -49,8 +22,40 @@
   margin-top: 20px;
 }
 
-
 .no-bonds-message {
   margin-top: 10px;
   color: #999;
 }
+
+.bond-box-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+
+.bond-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px; 
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+}
+
+.bond-box {
+  flex: 0 0 calc(50% - 20px);
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 10px; 
+  margin: 10px;
+  box-sizing: border-box;
+}
+
+
+
