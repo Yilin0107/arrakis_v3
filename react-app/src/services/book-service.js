@@ -1,5 +1,5 @@
 import http from './axios-common';
 
-export function getAllBonds(){
-    return http.get("/employee");
+export function getAllBooks(emp_id){
+    return http.get(`/employees/books/${emp_id}`);
 }

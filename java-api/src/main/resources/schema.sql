@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS employee (
     employee_email VARCHAR(150),
     employee_department VARCHAR(50),
     employee_role VARCHAR(50),
-    employee_password_hash VARCHAR(100) -- Adjust the length as per your hashing algorithm
+    employee_password_hash VARCHAR(100)
+    -- Adjust the length as per your hashing algorithm
 );
 
 CREATE TABLE IF NOT EXISTS bond (
