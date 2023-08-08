@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/employees")
@@ -23,7 +20,7 @@ public class EmployeeController {
     private final EmployeeServiceImpl employeeServiceImpl;
 
     @Autowired
-    public EmployeeController(EmployeeServiceImpl employeeServiceImpl) {
+    public EmployeeController(final EmployeeServiceImpl employeeServiceImpl) {
         this.employeeServiceImpl = employeeServiceImpl;
     }
 
@@ -34,13 +31,13 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable int id) {
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable final int id) {
         Optional<Employee> employee = employeeServiceImpl.getEmployeeById(id);
         return employee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/{id}/bonds")
-    public ResponseEntity<List<Bond>> getBondsByEmployeeId(@PathVariable int id) {
+    public ResponseEntity<List<Bond>> getBondsByEmployeeId(@PathVariable final int id) {
         if (Objects.isNull(getEmployeeById(id).getBody())) {
                return ResponseEntity.notFound().build();
         }
@@ -49,8 +46,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/books/{employeeId}")
-    public ResponseEntity<Map<String, List<Bond>>> getBondsByEmployeeIdGroupedByBook(@PathVariable int employeeId) {
-        Map<String, List<Bond>> result = employeeServiceImpl.findBondsByEmployeeIdGroupedByBook(employeeId);
+    public ResponseEntity<Set<String>> findBooksByEmployeeId(@PathVariable final int employeeId) {
+        Set<String> result = employeeServiceImpl.findBooksByEmployeeId(employeeId);
         if (result.isEmpty()) {
             return ResponseEntity.notFound().build();
         }

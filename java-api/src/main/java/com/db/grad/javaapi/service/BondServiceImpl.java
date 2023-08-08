@@ -28,20 +28,16 @@ public class BondServiceImpl implements BondService{
 
     @Override
     public List<Bond> findBondsDueForMaturityInLastAndNextFiveDays() {
-        java.util.Date date = new java.util.Date();
-        Date currentDate = new Date(date.getTime());
-        // for testing purpose
-//        String dateString = "2021-08-05";
-//        Date currentDate = Date.valueOf(dateString);
-
-        Date lastFiveDays = new Date(currentDate.getTime() - 5 * 24 * 60 * 60 * 1000); // 5 days ago
-        Date nextFiveDays = new Date(currentDate.getTime() + 5 * 24 * 60 * 60 * 1000); // 5 days from now
+        final java.util.Date date = new java.util.Date();
+        final Date currentDate = new Date(date.getTime());
+        final Date lastFiveDays = new Date(currentDate.getTime() - 5 * 24 * 60 * 60 * 1000); // 5 days ago
+        final Date nextFiveDays = new Date(currentDate.getTime() + 5 * 24 * 60 * 60 * 1000); // 5 days from now
         return bondRepository.findByBondMaturityDateBetween(lastFiveDays, nextFiveDays);
     }
 
     @Override
     public List<Bond> findBondsDueForMaturityInLastAndNextFiveWorkDaysByDate(String givenDate) {
-        SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        final SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date currentDate = new Date(System.currentTimeMillis());
 
         try {
@@ -61,7 +57,7 @@ public class BondServiceImpl implements BondService{
                 calendar.add(Calendar.DAY_OF_WEEK, -1);
             } while (!isWorkingDay(calendar)); // Skip weekends
         }
-        Date lastFiveDays = new Date(calendar.getTimeInMillis());
+        final Date lastFiveDays = new Date(calendar.getTimeInMillis());
 
         calendar.setTime(currentDate);
 
@@ -71,21 +67,20 @@ public class BondServiceImpl implements BondService{
                 calendar.add(Calendar.DAY_OF_WEEK, 1);
             } while (!isWorkingDay(calendar)); // Skip weekends
         }
-        Date nextFiveDays = new Date(calendar.getTimeInMillis());
+        final Date nextFiveDays = new Date(calendar.getTimeInMillis());
 
         return bondRepository.findByBondMaturityDateBetween(lastFiveDays, nextFiveDays);
     }
 
-    private boolean isWorkingDay(Calendar calendar) {
-        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+    private boolean isWorkingDay(final Calendar calendar) {
+        final int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
         return dayOfWeek != Calendar.SATURDAY && dayOfWeek != Calendar.SUNDAY;
     }
 
 
     @Override
-    public List<Bond> findBondsDueForMaturityInLastAndNextFiveDaysByDate(String givenDate) {
-        SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat outputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    public List<Bond> findBondsDueForMaturityInLastAndNextFiveDaysByDate(final String givenDate) {
+        final SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         java.util.Date utilDate = null;
         try {
             utilDate = inputDateFormat.parse(givenDate);
@@ -101,13 +96,13 @@ public class BondServiceImpl implements BondService{
 
 
     @Override
-    public Optional<Bond> findByIsin(String isin) {
+    public Optional<Bond> findByIsin(final String isin) {
         return bondRepository.findByIsin(isin);
     }
 
     @Override
     public Map<String, String> getBondIsinIssuerMap() {
-        List<Bond> bonds = bondRepository.findAll();
+        final List<Bond> bonds = bondRepository.findAll();
         return bonds.stream().collect(Collectors.toMap(Bond::getIsin, Bond::getIssuerName));
     }
 }

@@ -15,17 +15,15 @@ import java.util.*;
 public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final BondRepository bondRepository;
-    private final TradeRepository tradeRepository;
 
     @Autowired
     public EmployeeServiceImpl(final EmployeeRepository employeeRepository, BondRepository bondRepository, TradeRepository tradeRepository) {
         this.employeeRepository = employeeRepository;
         this.bondRepository = bondRepository;
-        this.tradeRepository = tradeRepository;
     }
 
     public void initializeEmployeesPasswordHash() {
-        List<Employee> employees = employeeRepository.findAll();
+        final List<Employee> employees = employeeRepository.findAll();
 
         for (Employee employee : employees) {
             employee.setEmployeePasswordHash("defaultPassword"+employee.getEmployeeName());
@@ -54,9 +52,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Map<String, List<Bond>> findBondsByEmployeeIdGroupedByBook(int employeeId) {
-        Map<String, List<Bond>> result = new HashMap<>();
+        final Map<String, List<Bond>> result = new HashMap<>();
 
-        Employee employee = employeeRepository.findById(employeeId).orElse(null);
+        final Employee employee = employeeRepository.findById(employeeId).orElse(null);
         if (employee != null) {
             for (Bond bond : employee.getBonds()) {
                 for (Trade trade : bond.getTrades()) {
@@ -64,6 +62,21 @@ public class EmployeeServiceImpl implements EmployeeService {
 
                     result.putIfAbsent(bookName, new ArrayList<>());
                     result.get(bookName).add(bond);
+                }
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public Set<String> findBooksByEmployeeId(int employeeId) {
+        final Set<String> result = new HashSet<>();
+
+        final Employee employee = employeeRepository.findById(employeeId).orElse(null);
+        if (employee != null) {
+            for (final Bond bond : employee.getBonds()) {
+                for (Trade trade : bond.getTrades()) {
+                    result.add(trade.getBookName());
                 }
             }
         }

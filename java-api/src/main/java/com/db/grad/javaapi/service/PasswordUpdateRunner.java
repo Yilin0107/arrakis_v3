@@ -9,7 +9,7 @@ public class PasswordUpdateRunner implements CommandLineRunner {
     private final EmployeeServiceImpl employeeServiceImpl;
 
     @Autowired
-    public PasswordUpdateRunner(EmployeeServiceImpl employeeServiceImpl) {
+    public PasswordUpdateRunner(final EmployeeServiceImpl employeeServiceImpl) {
         this.employeeServiceImpl = employeeServiceImpl;
     }
 
